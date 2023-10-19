@@ -1,17 +1,15 @@
 import React from 'react'
 
-class Expense extends React.Component {
-    render() {
-        return (
+function Expense(props) {
+    return (
+        <div>
+            <div>{props.fecha}</div>
             <div>
-                <div>17 octubre 2023</div>
-                <div>
-                <h2>Libros</h2>
-                    <div>$250</div>
-                </div>
+            <h1>{props.titulo}</h1>
+                <div>${props.precio}</div>
             </div>
-        )
-    }
+        </div>
+    )
 }
 
 export default Expense;
