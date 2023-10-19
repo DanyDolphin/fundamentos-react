@@ -1,0 +1,15 @@
+- Para inicializar proyecto
+npm create vite@latest
+
+Seleccionar:
+- y (instalar vite?)
+- nombre de la carpeta
+- React
+- Javascript
+
+- Para instalar proyecto
+cd nombre-proyecto
+npm install
+
+- Para correr proyecto
+npm run dev
