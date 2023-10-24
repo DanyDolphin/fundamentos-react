@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 
 function NewExpense(props) {
-    const [descripcion, setDescripcion] = useState()
-    const [monto, setMonto] = useState()
-    const [fecha, setFecha] = useState()
+    const [descripcion, setDescripcion] = useState('Descripcion generica')
+    const [monto, setMonto] = useState(0)
+    const [fecha, setFecha] = useState('2023-10-23')
 
     function handleDescripcionChange(event) {
         setDescripcion(event.target.value)
@@ -18,9 +18,17 @@ function NewExpense(props) {
     }
 
     function handleClick() {
-        console.log(`
-        Descripcion: ${descripcion}
-        Monto: ${monto}
+        props.onNewExpense({
+            descripcion: descripcion,
+            monto: monto,
+            fecha: fecha
+        })
+    }
+
+    function expenseSummary() {
+        return (`
+        Descripcion: ${descripcion},
+        Monto: ${monto},
         Fecha: ${fecha.toString()}
         `);
     }
@@ -30,21 +38,25 @@ function NewExpense(props) {
         <input
             type="text"
             placeholder="Descripcion"
+            value={descripcion}
             onChange={handleDescripcionChange}/>
         <br />
         <input
             type="text"
             placeholder="Monto"
+            value={monto}
             onChange={handleMontoChange}/>
         <br />
         <input
             type="date"
             placeholder="Fecha"
+            value={fecha}
             onChange={handleFechaChange}/>
         <button
             onClick={handleClick}>
             Agregar
         </button>
+        <p>{expenseSummary()}</p>
         </>
     );
 }

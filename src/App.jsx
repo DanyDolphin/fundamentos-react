@@ -4,10 +4,15 @@ import Expense, {suma} from './components/Expense'
 import NewExpense from './layouts/NewExpense'
 
 function App() {
+  function handleNewExpense(expense) {
+    console.log(expense)
+  }
 
   return (
     <>
-      <NewExpense/>
+      <NewExpense
+        onNewExpense={handleNewExpense}
+      />
       <Expense
           fecha={new Date(2023, 9, 17)}
           titulo={'Libros'}
