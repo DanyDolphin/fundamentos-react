@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 
 function NewExpense(props) {
-    const [descripcion, setDescripcion] = useState('Descripcion generica')
-    const [monto, setMonto] = useState(0)
-    const [fecha, setFecha] = useState('2023-10-23')
+    const [descripcion, setDescripcion] = useState('')
+    const [monto, setMonto] = useState()
+    const [fecha, setFecha] = useState('')
 
     function handleDescripcionChange(event) {
         setDescripcion(event.target.value)
@@ -40,18 +40,25 @@ function NewExpense(props) {
             placeholder="Descripcion"
             value={descripcion}
             onChange={handleDescripcionChange}/>
+        <span>
+            {!descripcion && "La descripcion no puede estar vacia"}
+        </span>
         <br />
         <input
             type="text"
             placeholder="Monto"
             value={monto}
             onChange={handleMontoChange}/>
+            {monto <= 50 && "El monto debe ser mayor a 50"}
         <br />
         <input
             type="date"
             placeholder="Fecha"
             value={fecha}
             onChange={handleFechaChange}/>
+            <span>
+                {!fecha && "La fecha no puede estar vacia"}
+                </span>
         <button
             onClick={handleClick}>
             Agregar
