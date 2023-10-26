@@ -3,6 +3,14 @@
     border-radius: 15px;
 }
 
+.card-active {
+    border: 1px solid red;
+}
+
 .card:hover {
     background-color: lightblue;
+}
+
+.title {
+    color: red
 }

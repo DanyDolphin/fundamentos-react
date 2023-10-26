@@ -1,27 +1,24 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 // Style
-import './Card.css';
+import style from './Card.module.css';
+import styleSass from './Card.module.scss'
 
 function Card (props) {
+    const [clicked, setClicked] = useState()
+
     function handleClick() {
-        console.log('me clickeaste!');
-    }
-
-    function handleMouseDown() {
-        console.log('mouse down')
-    }
-
-    function handleMouseUp() {
-        console.log('mouse up')
+        setClicked(!clicked)
     }
 
     return (
         <div 
-            className='card'
-            onClick={handleClick}
-            onMouseDown={handleMouseDown}
-            onMouseUp={handleMouseUp}>
+            className={`card ${style.common} ${clicked ? 'card-active' : ''}`}
+            onClick={handleClick}>
+            {/*NUNCA USAR LA PROPIEDAD STYLE*/}
+            <p 
+                style={{ fontSize: '12px', backgroundColor: 'lightblue' }}
+                className={styleSass['card-item']}>Subtitulo</p>
             {props.children}
         </div>
     )

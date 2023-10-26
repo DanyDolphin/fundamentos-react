@@ -32,6 +32,7 @@ function App() {
 
   return (
     <>
+      <h1>Manejador de gastos</h1>
       <NewExpense
         onNewExpense={handleNewExpense}
       />

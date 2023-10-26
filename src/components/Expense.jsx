@@ -1,4 +1,4 @@
-import './Expense.css';
+import style from './Expense.module.css';
 
 import React from 'react'
 import ExpenseDate from './ExpenseDate'
@@ -14,7 +14,8 @@ function Expense(props) {
         <Card>
             <ExpenseDate fecha={props.fecha}/>
             <div>
-            <h1>{props.children || props.titulo || 'Valor por defecto'}</h1>
+            <h1
+                className={`${style.common}`}>{props.children || props.titulo || 'Valor por defecto'}</h1>
                 <div>${props.precio}</div>
             </div>
         </Card>

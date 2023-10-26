@@ -1,0 +1,8 @@
+.card {
+    background-color: red;
+
+    /*.card-item*/
+    &-item {
+        color: blue
+    }
+}
