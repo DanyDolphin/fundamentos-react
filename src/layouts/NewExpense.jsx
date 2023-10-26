@@ -19,9 +19,9 @@ function NewExpense(props) {
 
     function handleClick() {
         props.onNewExpense({
-            descripcion: descripcion,
-            monto: monto,
-            fecha: fecha
+            titulo: descripcion,
+            precio: monto,
+            fecha: new Date(fecha+'T07:00:00')
         })
     }
 
