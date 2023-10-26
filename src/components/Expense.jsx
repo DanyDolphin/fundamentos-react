@@ -2,7 +2,7 @@ import style from './Expense.module.css';
 
 import React from 'react'
 import ExpenseDate from './ExpenseDate'
-import Card from './Card'
+import Card from './Card/Card'
 
 export function suma(num1, num2) {
     let resultado = num1 + num2;

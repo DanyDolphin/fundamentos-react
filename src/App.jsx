@@ -1,8 +1,11 @@
 import React, {useState} from 'react';
 import './App.css'
+import {
+  FormGroup
+} from './shared/forms'
 
 import Expense, {suma} from './components/Expense'
-import NewExpense from './layouts/NewExpense'
+import NewExpense from './layouts/NewExpense/NewExpense'
 
 function App() {
   const [filtro, setFiltro] = useState('')
@@ -36,11 +39,20 @@ function App() {
       <NewExpense
         onNewExpense={handleNewExpense}
       />
-      <input
-        placeholder='Agrega un filtro'
-        value={filtro}
-        onChange={handleFiltroChange}
-        />
+
+      <FormGroup>
+        <label
+          htmlFor='filtro'>
+          Busqueda
+        </label>
+        <input
+          name='filtro'
+          placeholder='Agrega un filtro'
+          value={filtro}
+          onChange={handleFiltroChange}
+          />
+      </FormGroup>
+      
 
       {expenses
         .filter((expense) => expense.titulo.includes(filtro))

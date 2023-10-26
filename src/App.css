@@ -1,3 +1,8 @@
+:root {
+    --red: #9c2d33;
+    --gray: #e3e3e3;
+}
+
 h1 {
     color: gray
 }
