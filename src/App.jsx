@@ -5,6 +5,7 @@ import Expense, {suma} from './components/Expense'
 import NewExpense from './layouts/NewExpense'
 
 function App() {
+  const [filtro, setFiltro] = useState('')
   const [expenses, setExpenses] = useState(
     [
       {
@@ -25,13 +26,24 @@ function App() {
     )
   }
 
+  function handleFiltroChange(event) {
+    setFiltro(event.target.value)
+  }
+
   return (
     <>
       <NewExpense
         onNewExpense={handleNewExpense}
       />
+      <input
+        placeholder='Agrega un filtro'
+        value={filtro}
+        onChange={handleFiltroChange}
+        />
 
-      {expenses.map((expense) => (
+      {expenses
+        .filter((expense) => expense.titulo.includes(filtro))
+        .map((expense) => (
         <Expense
           key={expense.title}
           fecha={expense.fecha}
