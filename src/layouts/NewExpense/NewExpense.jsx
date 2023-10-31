@@ -4,15 +4,13 @@ import {
     FormValidationFeedback
 } from '../../shared/forms'
 import Card from "../../components/Card/Card";
+import Modal from "../../components/Modal/Modal";
 
 function NewExpense(props) {
     const [descripcion, setDescripcion] = useState('')
     const [monto, setMonto] = useState()
     const [fecha, setFecha] = useState('')
-
-    function handleDescripcionChange(event) {
-        setDescripcion(event.target.value)
-    }
+    const [isModalOpen, setIsModalOpen] = useState(true) 
 
     function handleMontoChange(event) {
         setMonto(event.target.value)
@@ -23,11 +21,12 @@ function NewExpense(props) {
     }
 
     function handleClick() {
-        props.onNewExpense({
-            titulo: descripcion,
-            precio: monto,
-            fecha: new Date(fecha+'T07:00:00')
-        })
+        setIsModalOpen(true);
+        // props.onNewExpense({
+        //     titulo: descripcion,
+        //     precio: monto,
+        //     fecha: new Date(fecha+'T07:00:00')
+        // })
     }
 
     function expenseSummary() {
@@ -51,7 +50,7 @@ function NewExpense(props) {
                 type="text"
                 placeholder="Descripcion"
                 value={descripcion}
-                onChange={handleDescripcionChange}/>
+                onChange={(event) => setDescripcion(event.target.value)}/>
             <FormValidationFeedback>
                 {!descripcion && "La descripcion no puede estar vacia"}
             </FormValidationFeedback>
@@ -87,6 +86,13 @@ function NewExpense(props) {
             Agregar
         </button>
         <p>{expenseSummary()}</p>
+
+        <Modal
+            titulo={'Mi modal'}
+            descripcion={'Esto es un modal'}
+            accion={'Confirmar'}
+            isOpen={isModalOpen}
+            onConfirm={() => setIsModalOpen(false)}/>
         </Card>
     );
 }

@@ -9,18 +9,23 @@ import {
     ModalHeader
 } from './styles'
 
-function Modal ({titulo, descripcion, accion}) {
-
-    return createPortal(
+function ModalLayout ({titulo, descripcion, accion, isOpen, onConfirm}) {
+    return isOpen ? (
         <Card className={classes.modal}>
             <ModalHeader>
                 <h2>{titulo}</h2>
             </ModalHeader>
             <p id={classes.descripcion}>{descripcion}</p>
             <ModalActions>
-                <button>accion</button>
+                <button onClick={onConfirm}>{accion}</button>
             </ModalActions>
-        </Card>,
+        </Card>
+    ) : null;
+}
+
+function Modal (props) {
+    return createPortal(
+        <ModalLayout {...props}/>,
         document.getElementById('modal')
     )
 }

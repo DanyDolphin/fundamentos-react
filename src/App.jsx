@@ -36,10 +36,6 @@ function App() {
 
   return (
     <>
-      <Modal
-        titulo={'Mi modal'}
-        descripcion={'Esto es un modal'}
-        accion={'Aceptar'}/>
       <h1>Manejador de gastos</h1>
       <NewExpense
         onNewExpense={handleNewExpense}
