@@ -6,4 +6,5 @@ export const CardLayout = styled.div`
     border: 1px solid var(--gray);
     border-radius: 4px;
     margin-bottom: 16px;
+    background-color: white;
 `

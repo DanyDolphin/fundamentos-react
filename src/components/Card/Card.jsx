@@ -8,7 +8,7 @@ import {
     CardLayout
 } from './styles'
 
-function Card (props) {
+function Card ({children, className}) {
     const [clicked, setClicked] = useState()
 
     function handleClick() {
@@ -18,13 +18,9 @@ function Card (props) {
     /*NUNCA USAR LA PROPIEDAD STYLE*/
     return (
         <CardLayout 
-            className={`card ${style.common} ${clicked ? 'card-active' : ''}`}
+            className={`card ${style.common} ${clicked ? 'card-active' : ''} ${className}`}
             onClick={handleClick}>
-            
-            <p 
-                style={{ fontSize: '12px', backgroundColor: 'lightblue' }}
-                className={styleSass['card-item']}>Card</p>
-            {props.children}
+            {children}
         </CardLayout>
     )
 }

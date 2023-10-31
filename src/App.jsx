@@ -6,6 +6,7 @@ import {
 
 import Expense, {suma} from './components/Expense'
 import NewExpense from './layouts/NewExpense/NewExpense'
+import Modal from './components/Modal/Modal';
 
 function App() {
   const [filtro, setFiltro] = useState('')
@@ -35,6 +36,10 @@ function App() {
 
   return (
     <>
+      <Modal
+        titulo={'Mi modal'}
+        descripcion={'Esto es un modal'}
+        accion={'Aceptar'}/>
       <h1>Manejador de gastos</h1>
       <NewExpense
         onNewExpense={handleNewExpense}
@@ -53,7 +58,6 @@ function App() {
           />
       </FormGroup>
       
-
       {expenses
         .filter((expense) => expense.titulo.includes(filtro))
         .map((expense) => (

@@ -41,7 +41,7 @@ function NewExpense(props) {
     return (
         <Card>
         <FormGroup
-            isInvalid={true}>
+            isInvalid={!descripcion}>
             <label
                 htmlFor="descripcion">
                 Descripcion

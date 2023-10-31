@@ -1,0 +1,10 @@
+.modal {
+    position: fixed;
+    top: 24px;
+    left: 50%;
+    transform: translate(-50%);
+
+    & #descripcion {
+        color: red;
+    }
+}
