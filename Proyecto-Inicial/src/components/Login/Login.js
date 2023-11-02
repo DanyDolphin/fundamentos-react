@@ -1,44 +1,18 @@
-import React, { useState, useEffect, useReducer } from "react";
+import React, { useEffect, useReducer } from "react";
 
 import Card from "../UI/Card/Card";
 import Button from "../UI/Button/Button";
 import styles from "./Login.module.css";
 
-// Enumerable (Enum)
-const ACTIONS = {
-  UPDATE_EMAIL: 'UPDATE_EMAIL',
-  EMAIL_BLUR: 'EMAIL_BLUR'
-}
-
-const reducer = (state, action) => {
-  switch (action.type) {
-    case ACTIONS.UPDATE_EMAIL:
-      return { value: action.payload, isValid: action.payload.includes("@")};
-    case ACTIONS.EMAIL_BLUR:
-      return { value: state.value, isValid: state.value.includes("@")};
-    default:
-      return { value: '', isValid: false }
-  }
-}
-
-const initialState = {
-  value: '',
-  isValid: null
-}
+import {reducer, initialState, ACTIONS} from './reducer'
 
 function Login(props) {
-  const [password, setPassword] = useState("");
-  const [passwordIsValid, setPasswordIsValid] = useState();
-  const [formIsValid, setFormIsValid] = useState(false);
-
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const {value: email, isValid: emailIsValid} = state
+  const {email, emailIsValid, password, passwordIsValid, formIsValid} = state
 
   useEffect(() => {
-    setFormIsValid(
-      email.includes("@") && password.trim().length > 6
-    );
+    dispatch({type: ACTIONS.VALIDATE_FORM});
   }, [password, email]);
 
   const emailChangeHandler = (event) => {
@@ -49,7 +23,10 @@ function Login(props) {
   };
 
   const passwordChangeHandler = (event) => {
-    setPassword(event.target.value);
+    dispatch({
+      type: ACTIONS.UPDATE_PASSWORD,
+      payload: event.target.value
+    });
   };
 
   const validateEmailHandler = () => {
@@ -59,7 +36,9 @@ function Login(props) {
   };
 
   const validatePasswordHandler = () => {
-    setPasswordIsValid(password.trim().length > 6);
+    dispatch({
+      type: ACTIONS.PASSWORD_BLUR
+    })
   };
 
   const submitHandler = (event) => {
