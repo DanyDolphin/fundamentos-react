@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from "react";
+import React, { useEffect, useReducer, useRef } from "react";
 
 import Card from "../UI/Card/Card";
 import Button from "../UI/Button/Button";
@@ -8,12 +8,24 @@ import {reducer, initialState, ACTIONS} from './reducer'
 
 function Login(props) {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const emailRef = useRef();
 
   const {email, emailIsValid, password, passwordIsValid, formIsValid} = state
 
   useEffect(() => {
     dispatch({type: ACTIONS.VALIDATE_FORM});
   }, [password, email]);
+
+  useEffect(() => {
+    const scrollHandler = () => {
+      emailRef.current?.focus();
+    }
+    window.addEventListener('scroll', scrollHandler)
+
+    return () => {
+      window.removeEventListener('scroll', scrollHandler);
+    }
+  }, []);
 
   const emailChangeHandler = (event) => {
     dispatch({
@@ -56,6 +68,7 @@ function Login(props) {
         >
           <label htmlFor="email">Correo</label>
           <input
+            ref={emailRef}
             type="email"
             id="email"
             value={email}
