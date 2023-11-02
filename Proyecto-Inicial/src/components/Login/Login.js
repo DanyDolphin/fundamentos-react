@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useRef } from "react";
+import React, { useEffect, useReducer, useRef, useContext } from "react";
 
 import Card from "../UI/Card/Card";
 import Button from "../UI/Button/Button";
@@ -6,9 +6,12 @@ import styles from "./Login.module.css";
 
 import {reducer, initialState, ACTIONS} from './reducer'
 
+import AuthContext from "../../contexts/AuthContext";
+
 function Login(props) {
   const [state, dispatch] = useReducer(reducer, initialState);
   const emailRef = useRef();
+  const authContext = useContext(AuthContext);
 
   const {email, emailIsValid, password, passwordIsValid, formIsValid} = state
 
@@ -55,11 +58,13 @@ function Login(props) {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    props.onLogin(email, password);
+    authContext.setIsLoggedIn(true);
+    //props.onLogin(email, password);
   };
 
   return (
     <Card className={styles.login}>
+      <p>Inicie sesion? {authContext.isLoggedIn ? 'si' : 'no'}</p>
       <form onSubmit={submitHandler}>
         <div
           className={`${styles.control} ${
