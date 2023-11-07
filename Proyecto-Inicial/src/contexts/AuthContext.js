@@ -8,14 +8,32 @@ export const AuthContextProvider = ({children}) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     const loginHandler = async (email) => {
-        const url = `https://react-bedu-default-rtdb.firebaseio.com/users.json?orderBy="email"&equalsTo="${email}"`
+        const url = `https://react-bedu-default-rtdb.firebaseio.com/users.json?orderBy="email"&equalTo="${email}"`
         const response = await fetch(url);
+
+        if (!response.ok) {
+            throw new Error('Error del servidor, comunicate con un asesor.');
+        }
+
         const responseData = await response.json();
-        console.log(responseData);
+        console.log(responseData)
+        return responseData;
     }
 
-    const onLogin = (email, password) => {
-        loginHandler(email);
+    const onLogin = async (email, password) => {
+        try {
+            const result = await loginHandler(email);
+
+            if (Object.values(result).length === 0) {
+                alert('El usuario no existe. Intenta de nuevo');
+            } else {
+                localStorage.setItem('isLoggedIn', true)
+                setIsLoggedIn(true);
+            }
+        } catch (err) {
+            alert(err.message);
+            console.log(err.message);
+        }
     }
 
     useEffect(() => {
