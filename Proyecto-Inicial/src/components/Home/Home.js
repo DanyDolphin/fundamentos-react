@@ -8,24 +8,15 @@ import useHttp from '../../hooks/useHttp';
 
 function Home() {
   const [user, setUser] = useState({})
-  const [error, setError] = useState()
-  const [isLoading, setIsLoading] = useState(true);
+
+  const {error, isLoading, request} = useHttp()
 
   useEffect(() => {
     const fetchUser = async () => {
-      setIsLoading(true);
       const id = localStorage.getItem('userId');
       const url = `https://react-bedu-default-rtdb.firebaseio.com/users/${id}.json`
-      const response = await fetch(url);
-
-      if (!response.ok) {
-        setError('Error al obtener datos del usuario.');
-        return
-      }
-
-      const responseData = await response.json();
-      setUser(responseData);
-      setIsLoading(false);
+      const response = await request(url);
+      setUser(response);
     }
 
     fetchUser();
