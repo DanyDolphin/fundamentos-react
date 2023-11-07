@@ -4,12 +4,12 @@ import styles from "./Home.module.css";
 
 import AuthContext from "../../contexts/AuthContext";
 
+import useHttp from '../../hooks/useHttp';
+
 function Home() {
   const [user, setUser] = useState({})
   const [error, setError] = useState()
   const [isLoading, setIsLoading] = useState(true);
-
-  const authContext = useContext(AuthContext)
 
   useEffect(() => {
     const fetchUser = async () => {
