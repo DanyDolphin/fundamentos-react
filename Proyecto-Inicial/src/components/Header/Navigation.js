@@ -23,7 +23,7 @@ function Navigation() {
         )}
         {authContext.isLoggedIn && (
           <li>
-            <Button onClick={() => authContext.setIsLoggedIn(false)} color="secondary">
+            <Button onClick={() => authContext.onLogout()} color="secondary">
               Salir
             </Button>
           </li>
