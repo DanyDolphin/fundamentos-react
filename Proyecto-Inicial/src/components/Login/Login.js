@@ -58,7 +58,7 @@ function Login(props) {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    authContext.setIsLoggedIn(true);
+    authContext.onLogin(email, password);
     //props.onLogin(email, password);
   };
 
