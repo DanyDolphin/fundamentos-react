@@ -1,0 +1,15 @@
+.picture {
+    margin: 2rem;
+}
+
+.gray {
+    filter: grayscale(1);
+}
+
+.blur {
+    filter: blur(4px);
+}
+
+.gray.blur {
+    filter: blur(4px) grayscale(1);
+}
