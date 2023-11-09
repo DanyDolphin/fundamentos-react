@@ -1,6 +1,5 @@
 import {useContext, useEffect, useState} from 'react'
 import Card from "../../components/UI/Card/Card";
-import styles from "./Home.module.css";
 
 import useHttp from '../../hooks/useHttp';
 
@@ -21,7 +20,7 @@ function Home() {
   }, []);
 
   return (
-    <Card className={styles.home}>
+    <Card className='home'>
       {isLoading ? (
         <h1>Cargando...</h1>
       ) : error ? (

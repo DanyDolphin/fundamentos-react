@@ -12,6 +12,8 @@ import {
 
 import AuthContext, {AuthContextProvider} from './contexts/AuthContext'
 import RequiresLogin from "./guards/RequiresLogin";
+import Gallery from "./pages/Gallery/Gallery";
+import Picture from "./pages/Picture/Picture";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +34,12 @@ const router = createBrowserRouter([
         </RequiresLogin>
         // using High Order Component
         // element: requiresLogin(<Home/>)
+      },{
+        path: '/gallery',
+        element: <Gallery/>,
+      },{
+        path: '/gallery/:picId',
+        element: <Picture/>
       }
     ]
   }

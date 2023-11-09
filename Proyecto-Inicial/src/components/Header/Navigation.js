@@ -20,6 +20,9 @@ function Navigation() {
           <Link to="/">Inicio</Link>
         </li>
         <li>
+          <Link to="/gallery">Galeria</Link>
+        </li>
+        <li>
           <Button color="secondary" onClick={authContext.onLogout}>
             {authContext.isLoggedIn ? 'Salir' : 'Iniciar sesión'}
           </Button>
