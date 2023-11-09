@@ -1,4 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
+import { redirect, useNavigate } from 'react-router-dom';
 
 const AuthContext = createContext({
     isLoggedIn: false
@@ -6,6 +7,8 @@ const AuthContext = createContext({
 
 export const AuthContextProvider = ({children}) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    const navigate = useNavigate();
 
     const loginHandler = async (email) => {
         const url = `https://react-bedu-default-rtdb.firebaseio.com/users.json?orderBy="email"&equalTo="${email}"`
@@ -31,6 +34,7 @@ export const AuthContextProvider = ({children}) => {
                 localStorage.setItem('isLoggedIn', true);
                 localStorage.setItem('userId', id);
                 setIsLoggedIn(true);
+                navigate('/home')
             }
         } catch (err) {
             alert(err.message);
@@ -42,6 +46,7 @@ export const AuthContextProvider = ({children}) => {
         localStorage.removeItem('isLoggedIn');
         localStorage.removeItem('userId');
         setIsLoggedIn(false)
+        navigate('/login')
     }
 
     useEffect(() => {

@@ -14,17 +14,15 @@ function Navigation() {
     <nav className={styles.nav}>
       <ul>
         <li>
-          <a href="/">Usuarios</a>
+          <Link to="/home">Home</Link>
         </li>
         <li>
-          <a href="https://facebook.com">Facebook</a>
+          <Link to="/">Inicio</Link>
         </li>
         <li>
-          <Link to="/login">
-            <Button color="secondary">
-              {authContext.isLoggedIn ? 'Salir' : 'Iniciar sesión'}
-            </Button>
-          </Link>
+          <Button color="secondary" onClick={authContext.onLogout}>
+            {authContext.isLoggedIn ? 'Salir' : 'Iniciar sesión'}
+          </Button>
         </li>
       </ul>
     </nav>

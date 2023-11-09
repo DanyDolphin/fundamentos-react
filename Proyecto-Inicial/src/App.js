@@ -11,6 +11,7 @@ import {
 } from 'react-router-dom'
 
 import AuthContext, {AuthContextProvider} from './contexts/AuthContext'
+import RequiresLogin from "./guards/RequiresLogin";
 
 const router = createBrowserRouter([
   {
@@ -18,11 +19,19 @@ const router = createBrowserRouter([
     element: <RootLayout/>,
     children: [
       {
+        path: '/',
+        element: <Public/>
+      },
+      {
         path: '/login',
         element: <Login/>
       },{
         path: '/home',
-        element: <Home/>
+        element: <RequiresLogin>
+          <Home/>
+        </RequiresLogin>
+        // using High Order Component
+        // element: requiresLogin(<Home/>)
       }
     ]
   }
@@ -30,17 +39,17 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <AuthContextProvider>
+    <>
       <RouterProvider router={router}/>
-    </AuthContextProvider>
+    </>
   );
 }
 
 function RootLayout () {
-  return <>
+  return <AuthContextProvider>
     <Header/>
     <Outlet/>
-  </>
+  </AuthContextProvider>
 }
 
 export default App;
