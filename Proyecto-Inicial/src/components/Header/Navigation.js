@@ -1,5 +1,7 @@
 import { useContext } from "react";
 
+import { Outlet, Link } from "react-router-dom";
+
 import Button from "../UI/Button/Button";
 import styles from "./Navigation.module.css";
 
@@ -11,23 +13,19 @@ function Navigation() {
   return (
     <nav className={styles.nav}>
       <ul>
-        {authContext.isLoggedIn && (
-          <li>
-            <a href="/">Usuarios</a>
-          </li>
-        )}
-        {authContext.isLoggedIn && (
-          <li>
-            <a href="/">Admin</a>
-          </li>
-        )}
-        {authContext.isLoggedIn && (
-          <li>
-            <Button onClick={() => authContext.onLogout()} color="secondary">
-              Salir
+        <li>
+          <a href="/">Usuarios</a>
+        </li>
+        <li>
+          <a href="https://facebook.com">Facebook</a>
+        </li>
+        <li>
+          <Link to="/login">
+            <Button color="secondary">
+              {authContext.isLoggedIn ? 'Salir' : 'Iniciar sesión'}
             </Button>
-          </li>
-        )}
+          </Link>
+        </li>
       </ul>
     </nav>
   );

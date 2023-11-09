@@ -1,8 +1,6 @@
 import {useContext, useEffect, useState} from 'react'
-import Card from "../UI/Card/Card";
+import Card from "../../components/UI/Card/Card";
 import styles from "./Home.module.css";
-
-import AuthContext from "../../contexts/AuthContext";
 
 import useHttp from '../../hooks/useHttp';
 

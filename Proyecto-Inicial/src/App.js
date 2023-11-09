@@ -1,28 +1,45 @@
 import React, { useState, useEffect, useContext } from "react";
-import Login from "./components/Login/Login";
-import Home from "./components/Home/Home";
+import Login from "./pages/Login/Login";
+import Home from "./pages/Home/Home";
+import Public from './pages/Public/Public'
 import Header from "./components/Header/Header";
 
+import {
+  createBrowserRouter,
+  Outlet,
+  RouterProvider
+} from 'react-router-dom'
+
 import AuthContext, {AuthContextProvider} from './contexts/AuthContext'
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <RootLayout/>,
+    children: [
+      {
+        path: '/login',
+        element: <Login/>
+      },{
+        path: '/home',
+        element: <Home/>
+      }
+    ]
+  }
+])
 
 function App() {
   return (
     <AuthContextProvider>
-      <AppLayout/>
+      <RouterProvider router={router}/>
     </AuthContextProvider>
   );
 }
 
-function AppLayout () {
-  const authContext = useContext(AuthContext)
-
-  const {isLoggedIn} = authContext
+function RootLayout () {
   return <>
-    <Header isAuthenticated={isLoggedIn}/>
-      <main>
-        {!isLoggedIn && <Login/>}
-        {isLoggedIn && <Home/>}
-      </main>
+    <Header/>
+    <Outlet/>
   </>
 }
 

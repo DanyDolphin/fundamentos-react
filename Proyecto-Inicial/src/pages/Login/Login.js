@@ -1,7 +1,7 @@
 import React, { useEffect, useReducer, useRef, useContext } from "react";
 
-import Card from "../UI/Card/Card";
-import Button from "../UI/Button/Button";
+import Card from "../../components/UI/Card/Card";
+import Button from "../../components/UI/Button/Button";
 import styles from "./Login.module.css";
 
 import {reducer, initialState, ACTIONS} from './reducer'
