@@ -15,4 +15,26 @@ describe('Posts', () => {
         // Postcondicion
         expect(listItems).not.toHaveLength(0);
     });
+
+    it('render pots with request mocked', async () => {
+        // Precondicion
+        window.fetch = jest.fn();
+        window.fetch.mockResolvedValueOnce({
+            json: async () => ({
+                results: [
+                    {
+                        id: 1,
+                        name: 'Fake name'
+                    }
+                ]
+            })
+        });
+        render(<Posts/>);
+
+        // Condicion
+        const listItems = await screen.findAllByRole('listitem');
+        
+        // Postcondicion
+        expect(listItems).not.toHaveLength(0);
+    })
 });

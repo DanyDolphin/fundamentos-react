@@ -5,7 +5,8 @@ function Posts() {
 
     useEffect(() => {
         const fetchCharacters = async () => {
-            const response = await fetch('https://rickandmortyapi.com/api/character')
+            const url = 'https://rickandmortyapi.com/api/character'
+            const response = await fetch(url);
             const data = await response.json();
             setPosts(data.results);
         }
